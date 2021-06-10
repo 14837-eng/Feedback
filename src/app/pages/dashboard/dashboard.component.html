@@ -1,0 +1,20 @@
+<div class="dashboard">
+    <table class="table">
+        <thead class="table__head">
+            <tr class="table__row">
+                <th>Имя</th>
+                <th>Почта</th>
+                <th>Телефон</th>
+                <th>Вопрос</th>
+            </tr>
+        </thead>
+        <tbody class="table__body">
+            <tr class="table__row" *ngFor="let item of list">
+                <td>{{item.name}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.phone}}</td>
+                <td>{{item.question}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

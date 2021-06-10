@@ -1,0 +1,46 @@
+
+
+<div class="header">
+    <div class="title">
+        <div class="title__data" *appShowAuthed="true">
+            {{email}}
+        </div>
+    </div>
+    <nav class="header__nav">
+        <ul class="list">
+            <li class="list__item">
+                <a  class="list__link"
+                    routerLink="/home"
+                    routerLinkActive="list__link_active">
+                    Связь</a>
+            </li>               
+            <li class="list__item"  *appShowAuthed="true">
+                <a  class="list__link"
+                    routerLink="/dashboard"
+                    routerLinkActive="list__link_active">
+                    Мои заявки</a>
+            </li>            
+            <li class="list__item" 
+                *appShowAuthed="false">
+                <a  class="list__link"
+                    routerLink="/login"
+                    routerLinkActive="list__link_active">
+                    Логин</a>
+            </li>
+            <li class="list__item" 
+                *appShowAuthed="false">
+                <a  class="list__link"
+                    routerLink="/register"
+                    routerLinkActive="list__link_active">
+                    Регистрация</a>
+            </li>           
+             <li class="list__item" 
+                 *appShowAuthed="true">
+                <button class="list__btn"
+                        (click)="logout()">
+                    Выход
+                </button>
+            </li>
+        </ul>
+    </nav>
+</div>

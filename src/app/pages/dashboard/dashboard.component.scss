@@ -1,0 +1,36 @@
+
+
+
+.dashboard
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.table
+{
+    &__head
+    {
+        .table__row
+        {
+            background: black;
+        }   
+        .table__row > th 
+        {
+            color: white;
+        }
+
+    }
+
+    &__body
+    {
+    }
+
+    &__row
+    {
+        font-size: 2rem;
+    }
+}

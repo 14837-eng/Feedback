@@ -1,0 +1,50 @@
+
+
+.header
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+}
+
+.title
+{
+    flex: 1 auto;
+    &__data
+    {
+        font-size: 2rem;
+    }
+}
+
+.list
+{
+    display: flex;
+    align-items: center;
+    &__item
+    {
+        & + &
+        {
+            margin-left: 1.5rem;
+        }
+    }
+
+    &__link
+    {
+        text-transform: lowercase;
+        font-size: 2rem;
+        &_active
+        {
+            color: blue;
+        }
+    }
+    &__btn
+    {
+        cursor: pointer;
+        border: none;
+        padding: 1rem;
+        color: white;
+        background: #d0121b;
+    }
+}

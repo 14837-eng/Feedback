@@ -1,0 +1,42 @@
+
+<div class="home">
+    <div class="home__title">
+        <img src="assets/images/hello-txt.png">
+    </div>
+    <div class="home__container">
+        <p class="home__msg" *ngIf="message">{{message}}</p>
+        <p class="home__msg_error" *ngIf="errMessage">{{errMessage}}</p>
+        <form   class="feedback" 
+                [formGroup]="formGroup" 
+                (ngSubmit)="onSubm()">
+
+            <h2 class="feedback__title">Форма обратной связи</h2>
+            <input  class="feedback__input"
+                    type="text" 
+                    placeholder="имя"
+                    formControlName="name">
+            <input  class="feedback__input"
+                    type="text" 
+                    placeholder="почта"
+                    formControlName="email">
+            <input  class="feedback__input"
+                    type="text" 
+                    placeholder="телефон"
+                    mask="+0-000-000-00-00"
+                    formControlName="phone">
+            <input  class="feedback__input"
+                    type="text" 
+                    placeholder="вопрос"
+                    formControlName="question">
+            <div class="s">
+                <!-- <button mat-button>Basic</button> -->
+                <button class="feedback__submit"
+                        type="submit"
+                        mat-stroked-button
+                        [disabled]="loading">
+                        отправить
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

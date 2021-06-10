@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "feedback-f1f63": {
+      "hosting": {
+        "web-app": [
+          "feedback-f1f63"
+        ]
+      }
+    }
+  }
+}
