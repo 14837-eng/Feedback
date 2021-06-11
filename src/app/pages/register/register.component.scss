@@ -10,13 +10,29 @@
 
 .auth
 {
-    width: 20rem;
+    width: 30rem;
     margin: 1rem;
     text-align: center;
+
+    &__header
+    {
+        margin: 2rem 0;
+        width: 100%;
+    }
+
     &__title
     {
         font-size: 2rem;
         margin-bottom: 1rem;
+    }
+
+    &__msg
+    {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+        background: #de5454;
+        color: white;
+        padding: 1rem;
     }
 
     &__input
@@ -32,11 +48,31 @@
         {
             outline: none;
         }
+        &.ng-invalid.ng-touched
+        {
+            border-color: red;
+        }
     }
     &__submit
     {
         margin-top: 1rem;
         color: white;
         background: #3b63ff;
+        &.mat-button-disabled
+        {
+            color: #e2dddd;
+        }
+    }
+}
+
+.error-list
+{
+    &__item
+    {
+        font-size: 1.6rem;
+        background: red;
+        color: white;
+        padding: 1rem;
+        margin-bottom: 1rem;
     }
 }

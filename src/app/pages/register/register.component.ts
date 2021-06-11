@@ -10,6 +10,9 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 export class RegisterComponent implements OnInit 
 {
   formGroup: FormGroup;
+  formError: boolean = false;
+  errMessage: string;
+  loading: boolean = false;
 
   constructor(private fb: FormBuilder,
               private firebaseService: FirebaseService) { }
@@ -26,9 +29,25 @@ export class RegisterComponent implements OnInit
 
   onSubm()
   {
-    if(this.formGroup.invalid) return;
+    this.errMessage = '';
+    this.formError = false;
+    if(this.formGroup.invalid)     
+    {
+      this.formError = true;
+      return;
+    }
     let email = this.formGroup.controls['email'].value, 
         password = this.formGroup.controls['password'].value;
-    this.firebaseService.emailSignup(email, password);
+    this.loading = true;
+    this.firebaseService.emailSignup(email, password)
+    .then((data) =>
+    {
+      this.loading = false;
+    })
+    .catch(err => 
+    {
+      this.loading = false;
+      this.errMessage = err;
+    })
   }
 }

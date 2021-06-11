@@ -27,20 +27,14 @@ export class FirebaseService
 
   signIn(email: string, password: string)
   {
-    this.firebaseAuth.signInWithEmailAndPassword(email, password)
+    return this.firebaseAuth.signInWithEmailAndPassword(email, password)
     .then((data: any)  => this.successAuth(data.user))
-    .catch(err => {
-      console.log('Something went wrong: ', err.message);
-    });
   }
 
   emailSignup(email: string, password: string) 
   {
-    this.firebaseAuth.createUserWithEmailAndPassword(email, password)
+    return this.firebaseAuth.createUserWithEmailAndPassword(email, password)
     .then((data: any) => this.successAuth(data.user))
-    .catch(error => {
-      console.log('Something went wrong: ', error);
-    });
   }
 
   private successAuth(user)
@@ -56,10 +50,11 @@ export class FirebaseService
 
   logout() 
   {
-    this.firebaseAuth.signOut().then(() => 
+    return this.firebaseAuth.signOut()
+    .then(() => 
     {
       this.IsAuthSubj.next(false);
-      this.currentUserSubj.next(null);
+      this.currentUserSubj.next({} as IUser);
       this.router.navigate(['/home']);
     });
   }

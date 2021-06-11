@@ -1,18 +1,36 @@
 <div class="login">
-    <form   class="auth"
-            [formGroup]="formGroup"
-            (ngSubmit)="onSubm()">
-        <h2 class="auth__title">Авторизация</h2>
-        <input  class="auth__input"
-                type="text" 
-                placeholder="почта"
-                formControlName="email">    
-        <input  class="auth__input"
-                type="password" 
-                placeholder="пароль"
-                formControlName="password">
-        <button class="auth__submit"
-                type="submit"
-                mat-stroked-button>Войти</button>
-    </form>
+
+        <form   class="auth"
+                [formGroup]="formGroup"
+                (ngSubmit)="onSubm()">
+                <header class="auth__header">
+                        <h2 class="auth__title">Авторизация</h2>
+                        <ul     class="error-list"  
+                                *ngIf="errMessage || formError">
+                                <li     class="error-list__item" 
+                                        *ngIf="errMessage">
+                                        {{errMessage}}
+                                </li>
+                                <li     class="error-list__item"
+                                        *ngIf="formError && formGroup.invalid">
+                                        Неправильно заполнены поля! <br>
+                                        Проверьте введенное значение.
+                                </li>
+                        </ul>
+                </header>
+                <input  class="auth__input"
+                        type="text" 
+                        placeholder="почта"
+                        formControlName="email">    
+                <input  class="auth__input"
+                        type="password" 
+                        placeholder="пароль"
+                        formControlName="password">
+                <button class="auth__submit"
+                        type="submit"
+                        mat-stroked-button
+                        [disabled]="loading">
+                        Войти
+                </button>
+        </form>
 </div>

@@ -10,6 +10,7 @@ import { QuestionsService } from 'src/app/services/questions.service';
 export class HomeComponent implements OnInit 
 {
   formGroup: FormGroup;
+  formError: boolean;
   message: string;
   errMessage: string;
   loading: boolean = false;
@@ -23,7 +24,7 @@ export class HomeComponent implements OnInit
     {
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(36)]],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', [Validators.required ]],
+      phone: ['', [Validators.required]],
       question: ['', [Validators.required]],
     })
   }
@@ -35,17 +36,21 @@ export class HomeComponent implements OnInit
 
   onSubm()
   {
-    if(this.formGroup.invalid) return;
+    this.formError = false;
     this.errMessage = this.message = '';
+    if(this.formGroup.invalid) 
+    {
+      this.formError = true;
+      return;
+    }
+
     let name = this.getControlValue('name'),
         email = this.getControlValue('email'),
         phone =  this.getControlValue('phone'),
         question = this.getControlValue('question');
+
     this.loading = true;
-    this.questionService.createQuestions(
-    {
-      name, email, phone, question
-    })
+    this.questionService.createQuestions({ name, email, phone, question })
     .then(v => 
     {
       this.loading = false;

@@ -7,9 +7,12 @@ import { FirebaseService } from 'src/app/services/firebase.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
-
+export class LoginComponent implements OnInit 
+{
   formGroup: FormGroup;
+  formError: boolean = false;
+  errMessage: string;
+  loading: boolean = false;
 
   constructor(private fb: FormBuilder,
               private firebaseService: FirebaseService) { }
@@ -25,9 +28,25 @@ export class LoginComponent implements OnInit {
 
   onSubm()
   {
-    if(this.formGroup.invalid) return;
+    this.errMessage = '';
+    this.formError = false;
+    if(this.formGroup.invalid) 
+    {
+      this.formError = true;
+      return;
+    }
     let email = this.formGroup.controls['email'].value, 
         password = this.formGroup.controls['password'].value;
-    this.firebaseService.signIn(email, password);
+    this.loading = true;
+    this.firebaseService.signIn(email, password)
+    .then((data) =>
+    {
+      this.loading = false;
+    })
+    .catch(err => 
+    {
+      this.loading = false;
+      this.errMessage = "Неправильные данные! Проверьте введенное значение.";
+    })
   }
 }
